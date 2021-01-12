@@ -2,12 +2,12 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginStart="0dp"
     android:layout_marginTop="0dp"
-    android:background="#191919"
-    >
+    android:background="#191919">
 
 
     <ImageView
@@ -27,9 +27,8 @@
         android:layout_marginTop="0dp"
         android:layout_toEndOf="@+id/ivPoster"
         android:text="Fast  Furious Presents: Hobbs Shaw"
-        android:textSize="24sp"
         android:textColor="@android:color/white"
-        />
+        android:textSize="24sp" />
 
     <TextView
         android:id="@+id/tvOverview"

@@ -3,10 +3,12 @@ package com.dennishc.flixster.models;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.parceler.Parcel;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Parcel
 public class Movie {
 
     // Member variables
@@ -14,6 +16,10 @@ public class Movie {
     String posterPath;
     String title;
     String overview;
+    double rating;
+
+    // empty constructor needed by the Parceler library
+    public Movie () {}
 
     // Overloaded Constructor using a JSONObject passed in
     public Movie(JSONObject jsonObject) throws JSONException
@@ -23,6 +29,8 @@ public class Movie {
 
         title = jsonObject.getString("title");
         overview = jsonObject.getString("overview");
+
+        rating = jsonObject.getDouble("vote_average");
     }
 
     public String getPosterPath() {
@@ -41,6 +49,10 @@ public class Movie {
     // Accessor/Getter
     public String getOverview() {
         return overview;
+    }
+
+    public double getRating() {
+        return rating;
     }
 
     public static List<Movie> fromJsonArray(JSONArray movieJsonArray) throws JSONException {

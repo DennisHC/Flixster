@@ -92,9 +92,9 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
             if (context.getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
                 // then imageUrl = back_drop image
                 imageUrl = movie.getBackdropPath();
-            } else{
+            } else {
                 // else imageUrl = poster image
-                imageUrl= movie.getPosterPath();
+                imageUrl = movie.getPosterPath();
             }
 
             Glide.with(context).load(movie.getPosterPath()).into(ivPoster);

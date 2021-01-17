@@ -22,7 +22,10 @@ import org.parceler.Parcels;
 import okhttp3.Headers;
 
 public class DetailActivity extends YouTubeBaseActivity {
+    // "AIzaSyDJB0uJp9s91hxSAWMA2TvcnBkP20xrigk"
 
+
+    // private static final String YOUTUBE_API_KEY = System.getenv("ANDROID_YOUTUBE_API");
     private static final String YOUTUBE_API_KEY = "AIzaSyDJB0uJp9s91hxSAWMA2TvcnBkP20xrigk";
     public static final String VIDEOS_URL = "https://api.themoviedb.org/3/movie/%d/videos?api_key=a07e22bc18f5cb106bfe4cc1f83ad8ed";
 
@@ -51,7 +54,7 @@ public class DetailActivity extends YouTubeBaseActivity {
         ratingBar.setRating((float) movie.getRating());
 
         AsyncHttpClient client = new AsyncHttpClient();
-        client.get(String.format(VIDEOS_URL, 209112), new JsonHttpResponseHandler() {
+        client.get(String.format(VIDEOS_URL, movie.getMovieId()), new JsonHttpResponseHandler() {
             @Override
             public void onSuccess(int i, Headers headers, JSON json) {
                 try {
@@ -61,6 +64,8 @@ public class DetailActivity extends YouTubeBaseActivity {
                     }
                     String youtubeKey = results.getJSONObject(0).getString("key");
                     Log.d("DetailActivity", youtubeKey);
+                    initializeYoutube(youtubeKey);
+
                 } catch (JSONException e) {
                     Log.e("DetailActivity", "Failed to parse JSON", e);
                     // e.printStackTrace();
@@ -72,12 +77,14 @@ public class DetailActivity extends YouTubeBaseActivity {
 
             }
         });
+    }
 
+    private void initializeYoutube(final String youtubeKey) {
         youTubePlayerView.initialize(YOUTUBE_API_KEY, new YouTubePlayer.OnInitializedListener() {
             @Override
             public void onInitializationSuccess(YouTubePlayer.Provider provider, YouTubePlayer youTubePlayer, boolean b) {
                 Log.d("DetailActivity", "onInitializationSuccess");
-                youTubePlayer.cueVideo("5xVh-7ywKpE");
+                youTubePlayer.cueVideo(youtubeKey);
             }
 
             @Override
